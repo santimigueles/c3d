@@ -8,4 +8,6 @@
 
 body{
   overflow: hidden;
+  background: url(img/fondo.jpg);
+  background-size: cover;
 }

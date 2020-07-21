@@ -4,24 +4,22 @@ let video;
 let poseNet;
 let poses = [];
 let poseX, poseY;
+let bg;
 
 function setup() {
   manoX = 0;
   manoY = 0;
 
-  let canvas = createCanvas(window.innerWidth, 600)
-  //canvas.position(0,0)
-  canvas.parent('jumbo-canvas')
+  let canvas = createCanvas(window.innerWidth, window.innerHeight)
+  canvas.position(0,0)
 
   setupOsc(12000, 3334);
 
   video = createCapture(VIDEO);
-  video.addClass('fullscreen-video')
   video.hide();
 }
 
 function draw() {
-  background(247,247,239)
   image(video, width / 2 - 200, 100, 320, 240);
   drawKeypoints();
 }
