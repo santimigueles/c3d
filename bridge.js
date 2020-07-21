@@ -7,7 +7,9 @@ var oscServer, oscClient;
 var isConnected = false;
 
 let app = express();
-app.use(express.static('/public'));
+let server = app.listen(3000);
+app.use(express.static('public'));
+
 
 
 io.sockets.on('connection', function (socket) {
