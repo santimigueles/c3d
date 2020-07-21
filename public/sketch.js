@@ -2,8 +2,10 @@ var socket;
 let video;
 let poseNet;
 let poses = [];
-let poseX, poseY;
-let miBoton;
+let poseX, poseY, nPoseX, nPoseY;
+let miBoton, opciones;
+let parte = 0;
+let pg;
 
 function posenetStart() {
   miBoton.hide();
@@ -17,22 +19,55 @@ function setup() {
   manoX = 0;
   manoY = 0;
 
-  createCanvas(window.innerWidth, window.innerHeight,P2D)
+  createCanvas(window.innerWidth, window.innerHeight)
+
+  pixelDensity(1);
+  pg = createGraphics(width, height);
 
   miBoton = createButton('Empezar');
   miBoton.center();
   miBoton.mousePressed(posenetStart);
 
+  opciones = createSelect();
+  opciones.position(0, 0)
+  opciones.option('nariz')
+  opciones.option('mano izquierda')
+  opciones.option('mano derecha')
+  opciones.changed(cambioDeteccion)
+
   setupOsc(12000, 3334);
 
   video = createCapture(VIDEO);
-  video.size(width,height)
+  video.size(width, height)
   video.hide();
 }
 
+function cambioDeteccion() {
+  let val = opciones.value();
+  switch (val) {
+
+    case 'nariz':
+      parte = 0;
+      break;
+
+    case 'mano izquierda':
+      parte = 9;
+      break;
+
+    case 'mano derecha':
+      parte = 10;
+      break;
+
+    default:
+      parte = 0;
+      break;
+  }
+}
+
 function draw() {
-  clear()
-  //image(video, width / 2 - 200, 100, 320, 240);
+  //clear()
+  image(video, 0, 0, 640, 480);
+  image(pg, 0, 0, width, height);
   drawKeypoints();
 }
 
@@ -79,15 +114,24 @@ function drawKeypoints() {
       // Only draw an ellipse is the pose probability is bigger than 0.2
       if (keypoint.score > 0.2) {
         //Muñeca izquierda
-        if (j == 9) {
+        if (j == parte) {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
-          fill(0, 255, 0);
-          ellipse(poseX, poseY, 100, 100);
+
+          pg.stroke(230, 80, 0);
+          pg.strokeWeight(5);
+          pg.line(poseX, poseY, nPoseX, nPoseY);
+
+          nPoseX = poseX;
+          nPoseY = poseY;
 
           socket.emit('message', [poseX, poseY]);
         }
       }
     }
   }
+}
+
+function keyPressed() {
+  pg.clear();
 }
