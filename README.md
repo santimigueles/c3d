@@ -1,5 +1,5 @@
 # C3D
-Repositorio para los codigos del C3D Web **Work In Progress**
+Repositorio para los codigos del C3D Web (**Work In Progress**)
 
 ![alt text](https://github.com/intercambiostransorganicos/c3d/blob/master/assets/loop.gif)
 
