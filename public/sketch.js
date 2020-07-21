@@ -1,5 +1,4 @@
 var socket;
-
 let video;
 let poseNet;
 let poses = [];
@@ -7,6 +6,7 @@ let poseX, poseY;
 let miBoton;
 
 function posenetStart() {
+  miBoton.hide();
   poseNet = ml5.poseNet(video, modelReady);
   poseNet.on('pose', function(results) {
     poses = results;
@@ -17,23 +17,22 @@ function setup() {
   manoX = 0;
   manoY = 0;
 
-  let canvas = createCanvas(window.innerWidth, window.innerHeight,P2D)
-  canvas.position(0, 0)
+  createCanvas(window.innerWidth, window.innerHeight,P2D)
 
-  miBoton = createButton('click me');
-  miBoton.position(0, 100);
+  miBoton = createButton('Empezar');
+  miBoton.center();
   miBoton.mousePressed(posenetStart);
 
   setupOsc(12000, 3334);
 
   video = createCapture(VIDEO);
-  video.size(640,480)
+  video.size(width,height)
   video.hide();
 }
 
 function draw() {
   clear()
-  image(video, width / 2 - 200, 100, 320, 240);
+  //image(video, width / 2 - 200, 100, 320, 240);
   drawKeypoints();
 }
 
