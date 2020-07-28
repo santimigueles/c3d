@@ -8,11 +8,14 @@ let parte = 0;
 let pg;
 
 function posenetStart() {
-  miBoton.hide();
-  poseNet = ml5.poseNet(video, modelReady);
-  poseNet.on('pose', function(results) {
-    poses = results;
-  });
+  if(opciones.value() != 'Seleccionar...'){
+    miBoton.hide();
+    opciones.hide();
+    poseNet = ml5.poseNet(video, modelReady);
+    poseNet.on('pose', function(results) {
+      poses = results;
+    });
+  }
 }
 
 function setup() {
@@ -25,14 +28,19 @@ function setup() {
   pg = createGraphics(width, height);
 
   miBoton = createButton('Empezar');
-  miBoton.center();
+  // miBoton.center();
   miBoton.mousePressed(posenetStart);
 
+  let miDiv = createDiv()
+  miDiv.addClass('selector')
   opciones = createSelect();
-  opciones.position(0, 0)
+  miDiv.child(opciones)
+  miDiv.child(miBoton)
+  opciones.option('Seleccionar...')
   opciones.option('nariz')
   opciones.option('mano izquierda')
   opciones.option('mano derecha')
+
   opciones.changed(cambioDeteccion)
 
   setupOsc(12000, 3334);
