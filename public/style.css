@@ -1,0 +1,45 @@
+/*Color palettes: https://mycolor.space/?hex=%239ACCC7&sub=1 */
+body {
+  background: url(../assets/fondo.jpg);
+  background-size: cover;
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+  color: #6f9ec0;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.child {
+  /* flex: 1 1 350px; /*  Stretching: */
+  flex: 0 1 150px; /*  No stretching: */
+  margin: 20px;
+  width: 100px;
+  height: 100px;
+  border: 2px;
+  border-style: solid;
+  border-color: #63fbec;
+  background: #c1fcf6;
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+
+.child:hover{
+  background: #a0f9f0;
+}
+
+a{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
