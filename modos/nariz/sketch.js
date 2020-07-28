@@ -19,31 +19,28 @@ function posenetStart() {
 }
 
 function setup() {
-  manoX = 0;
-  manoY = 0;
-
   createCanvas(window.innerWidth, window.innerHeight)
 
   pixelDensity(1);
   pg = createGraphics(width, height);
 
-  miBoton = createButton('Empezar');
-  // miBoton.center();
-  miBoton.mousePressed(posenetStart);
-
   let miDiv = createDiv()
   miDiv.addClass('selector')
+
+  miBoton = createButton('Empezar');
+  miBoton.mousePressed(posenetStart);
+
   opciones = createSelect();
-  miDiv.child(opciones)
-  miDiv.child(miBoton)
   opciones.option('Seleccionar...')
   opciones.option('nariz')
   opciones.option('mano izquierda')
   opciones.option('mano derecha')
-
   opciones.changed(cambioDeteccion)
 
-  setupOsc(12000, 3334);
+  miDiv.child(opciones)
+  miDiv.child(miBoton)
+
+  //setupOsc(12000, 3334);
 
   video = createCapture(VIDEO);
   video.size(width, height)
@@ -73,7 +70,8 @@ function cambioDeteccion() {
 }
 
 function draw() {
-  //clear()
+  translate(video.width, 0);
+  scale(-1, 1);
   image(video, 0, 0, 640, 480);
   image(pg, 0, 0, width, height);
   drawKeypoints();
@@ -133,7 +131,7 @@ function drawKeypoints() {
           nPoseX = poseX;
           nPoseY = poseY;
 
-          socket.emit('message', [poseX, poseY]);
+          // socket.emit('message', [poseX, poseY]);
         }
       }
     }
