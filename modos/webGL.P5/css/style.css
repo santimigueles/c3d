@@ -1,8 +1,18 @@
+html, body {
+  height: 100%;
+}
+
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   background: url(../../../assets/fondo.jpg);
   background-size: cover;
   font-family: 'Hind Siliguri', sans-serif;
+
+
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {

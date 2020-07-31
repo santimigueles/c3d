@@ -1,5 +1,4 @@
 //Variables Max
-var socket;
 let poseNet;
 let poses = [];
 let poseX, poseY;
@@ -12,7 +11,7 @@ var angle = 0;
 let cam;
 
 function posenetStart() {
-  if(opciones.value() != 'Seleccionar...'){
+  if (opciones.value() != 'Seleccionar...') {
     miBoton.hide();
     opciones.hide();
     poseNet = ml5.poseNet(cam, modelReady);
@@ -25,29 +24,26 @@ function posenetStart() {
 
 
 function setup() {
-    createCanvas(500, 500, WEBGL);
-    cam = createCapture(VIDEO);
-    cam.size(150, 175);
-    cam.hide();
+  createCanvas(500, 500, WEBGL);
+  cam = createCapture(VIDEO);
+  cam.size(150, 175);
+  cam.hide();
 
-  //  setupOsc(12000, 3334);
+  let miDiv = createDiv()
+  miDiv.addClass('selector')
 
-    let miDiv = createDiv()
-    miDiv.addClass('selector')
+  miBoton = createButton('Empezar');
+  miBoton.mousePressed(posenetStart);
 
-    miBoton = createButton('Empezar');
-    miBoton.mousePressed(posenetStart);
+  opciones = createSelect();
+  opciones.option('Seleccionar...')
+  opciones.option('nariz')
+  opciones.option('mano izquierda')
+  opciones.option('mano derecha')
+  opciones.changed(cambioDeteccion)
 
-    opciones = createSelect();
-    opciones.option('Seleccionar...')
-    opciones.option('nariz')
-    opciones.option('mano izquierda')
-    opciones.option('mano derecha')
-    opciones.changed(cambioDeteccion)
-
-    miDiv.child(opciones)
-    miDiv.child(miBoton)
-
+  miDiv.child(opciones)
+  miDiv.child(miBoton)
 }
 
 function cambioDeteccion() {
@@ -73,17 +69,21 @@ function cambioDeteccion() {
 }
 
 function draw() {
-  if(start){
+  if (start) {
     //Espejado de camara
     translate(cam.width, 0);
     scale(-1, 1);
 
     drawKeypoints();
 
-    let dx = poseX - width / 2;
-    let dy = poseY - height / 2;
-    let mouseColorx = map(poseX, 0, width, 0, 255);
-    let cursorZ = map(poseY, 0, width, 0, 375)
+    //dx -250 a 1020
+    //dy -258 a 377
+    //mouseColorx 27 650
+    //cursorZ -6 a 471
+    let dx = poseX;
+    let dy = poseY;
+    let mouseColorx = map(poseX, 0, width * 0.7, 0, 255);
+    let cursorZ = map(poseY, 0, width * 0.7, 0, 375)
     let v = createVector(dx, dy, 0);
     v.div(100);
 
@@ -153,7 +153,7 @@ function draw() {
     plane(650, 600);
     pop();
 
-    translate(0 , -50 , -230);
+    translate(0, -50, -230);
 
     noStroke();
     texture(cam);
@@ -161,36 +161,6 @@ function draw() {
     angle += 0.005;
   }
 }
-
-
-function setupOsc(oscPortIn, oscPortOut) {
-  socket = io.connect('http://127.0.0.1:8081', {
-    port: 8081,
-    rememberTransport: false
-  });
-  socket.on('connect', function() {
-    socket.emit('config', {
-      server: {
-        port: oscPortIn,
-        host: '127.0.0.1'
-      },
-      client: {
-        port: oscPortOut,
-        host: '127.0.0.1'
-      }
-    });
-  });
-  socket.on('message', function(msg) {
-    if (msg[0] == '#bundle') {
-      for (var i = 2; i < msg.length; i++) {
-        receiveOsc(msg[i][0], msg[i].splice(1));
-      }
-    } else {
-      receiveOsc(msg[0], msg.splice(1));
-    }
-  });
-}
-
 
 function modelReady() {
   console.log('model ready');
@@ -209,8 +179,6 @@ function drawKeypoints() {
         if (j == parte) {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
-
-          // socket.emit('message', [poseX, poseY]);
         }
       }
     }
