@@ -7,4 +7,6 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 * [Santi Migueles](https://github.com/santimigueles)
 
 ### To Do
+* Agregar color pallette a modo nariz
+* Agregar emojis a menu principal
 * Agregar pequeño instructivo para compartir codigo
