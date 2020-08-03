@@ -8,5 +8,5 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 
 ### To Do
 * Agregar color pallette a modo nariz
-* Agregar emojis a menu principal
+* Agregar icono ayuda en modos con popup de pequeña descripcion del modo
 * Agregar pequeño instructivo para compartir codigo
