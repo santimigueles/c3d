@@ -2,6 +2,7 @@
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight, WEBGL)
   cnv.position(0,0)
+  cnv.style('pointer-events', 'none')
 }
 
 function draw() {

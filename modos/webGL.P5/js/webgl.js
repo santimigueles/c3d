@@ -98,9 +98,9 @@ function draw() {
 
     translate(0, 0, cursorZ);
 
-    let fov = map(poseX, 0, width, 0, PI);
+    let fov = map(poseX * 3, 0, width, 0, PI);
     let cameraZ = (height / 2) - tan(PI / 3);
-    perspective(fov, width / height, cameraZ / 10.0, cameraZ * 10.0);
+    perspective(fov, width / height, cameraZ / 50.0, cameraZ * 50.0);
 
     push();
     rotateX(angle);

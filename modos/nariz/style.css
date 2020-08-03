@@ -54,3 +54,60 @@ button {
   bottom: 0px;
   left: 0px;
 }
+
+.container {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.iconbtn {
+  font-size: 2em;
+  width: 50px;
+  height: 50px;
+}
+
+.iconbtn::before {
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  z-index: 1;
+}
+
+.iconbtn::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.iconbtn:hover {
+  color: red;
+}
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(114, 165, 164, 100);
+  width: 0px;
+  height: 100px;
+  position: fixed;
+  bottom: 55px;
+  right: 40px;
+  border-radius: 10px;
+  opacity: 0;
+
+  transition: width 2s, opacity 1s;
+}
+
+.popText{
+  flex: 0 0 150px;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.5;
+}
