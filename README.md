@@ -10,3 +10,4 @@ Repositorio para los codigos del C3D Web (**Work In Progress**)
 * Agregar pequeño instructivo para compartir codigo
 * Terminar Modo OSC
 * Agregar boton para volver a menu principal
+* Cambiar color del logo para que quede como el del titulo
