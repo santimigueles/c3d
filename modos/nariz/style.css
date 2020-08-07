@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  background: url(../../assets/fondo.jpg);
+  background: url(../../assets/fondo-vacio.png);
   background-size: cover;
   font-family: 'Hind Siliguri', sans-serif;
 }
@@ -26,6 +26,10 @@ button {
   display: inline-block;
   font-size: 16px;
   margin-bottom: 150px;
+}
+
+button:hover{
+  background-color: rgb(220,220,220);
 }
 
 .misBotones {
