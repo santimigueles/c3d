@@ -28,6 +28,16 @@ button {
   margin-bottom: 150px;
 }
 
+.misBotones {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .container {
   position: fixed;
   bottom: 25px;

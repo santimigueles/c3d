@@ -2,13 +2,12 @@ let video;
 let poseNet;
 let poses = [];
 let poseX, poseY, nPoseX, nPoseY;
-let miBoton, opciones;
+let miBoton = document.querySelector('.empezar');
+let popup = document.querySelector(".popup")
 let parte = 0;
 let pg;
 let colorPicker
-let popup = document.querySelector(".popup")
 let mostrar = false;
-
 
 function mostrarPop(){
   mostrar = !mostrar;
@@ -23,11 +22,12 @@ function mostrarPop(){
 }
 
 function posenetStart() {
-    miBoton.hide();
+    miBoton.style.display = "none";
     poseNet = ml5.poseNet(video, modelReady);
     poseNet.on('pose', function(results) {
       poses = results;
     });
+  start = true;
 }
 
 function setup() {
@@ -36,10 +36,6 @@ function setup() {
 
   pixelDensity(1);
   pg = createGraphics(width, height);
-
-  miBoton = createButton('Empezar');
-  miBoton.mousePressed(posenetStart);
-  miBoton.center();
 
   colorPicker = createColorPicker('#ed225d');
   colorPicker.position(width - 150, height - 50);

@@ -47,45 +47,7 @@ function setup() {
   cam = createCapture(VIDEO);
   cam.size(150, 175);
   cam.hide();
-
-  // let miDiv = createDiv()
-  // miDiv.addClass('selector')
-  //
-  // miBoton = createButton('Empezar');
-  // miBoton.mousePressed(posenetStart);
-  //
-  // opciones = createSelect();
-  // opciones.option('Seleccionar...')
-  // opciones.option('nariz')
-  // opciones.option('mano izquierda')
-  // opciones.option('mano derecha')
-  // opciones.changed(cambioDeteccion)
-  //
-  // miDiv.child(opciones)
-  // miDiv.child(miBoton)
 }
-
-// function cambioDeteccion() {
-//   let val = opciones.value();
-//   switch (val) {
-//
-//     case 'nariz':
-//       parte = 0;
-//       break;
-//
-//     case 'mano izquierda':
-//       parte = 9;
-//       break;
-//
-//     case 'mano derecha':
-//       parte = 10;
-//       break;
-//
-//     default:
-//       parte = 0;
-//       break;
-//   }
-// }
 
 function draw() {
   if (start) {
