@@ -8,8 +8,8 @@ function setup() {
 function draw() {
   clear()
   translate(width * 0.35, -130)
-  rotateY(mouseY)
-  rotateX(mouseX)
+  rotateY(mouseY/2)
+  rotateX(mouseX/2)
 
   noFill()
   stroke(255,150)

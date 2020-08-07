@@ -23,14 +23,11 @@ function mostrarPop(){
 }
 
 function posenetStart() {
-  if(opciones.value() != 'Seleccionar...'){
     miBoton.hide();
-    opciones.hide();
     poseNet = ml5.poseNet(video, modelReady);
     poseNet.on('pose', function(results) {
       poses = results;
     });
-  }
 }
 
 function setup() {
@@ -40,59 +37,25 @@ function setup() {
   pixelDensity(1);
   pg = createGraphics(width, height);
 
-  let miDiv = createDiv()
-  miDiv.addClass('selector')
-
   miBoton = createButton('Empezar');
   miBoton.mousePressed(posenetStart);
-
-  opciones = createSelect();
-  opciones.option('Seleccionar...')
-  opciones.option('nariz')
-  opciones.option('mano izquierda')
-  opciones.option('mano derecha')
-  opciones.changed(cambioDeteccion)
-
-  miDiv.child(opciones)
-  miDiv.child(miBoton)
+  miBoton.center();
 
   colorPicker = createColorPicker('#ed225d');
   colorPicker.position(width - 150, height - 50);
-
 
   video = createCapture(VIDEO);
   video.size(width, height)
   video.hide();
 }
 
-function cambioDeteccion() {
-  let val = opciones.value();
-  switch (val) {
-
-    case 'nariz':
-      parte = 0;
-      break;
-
-    case 'mano izquierda':
-      parte = 9;
-      break;
-
-    case 'mano derecha':
-      parte = 10;
-      break;
-
-    default:
-      parte = 0;
-      break;
-  }
-}
 
 function draw() {
   push()
   pixelDensity(3.0)
   textSize(15)
   fill(50,50,50,150)
-  text('Color', width - 145, height - 45)
+  text('Color', width - 145, height - 20)
   pop()
   translate(video.width, 0);
   scale(-1, 1);
@@ -100,7 +63,6 @@ function draw() {
   image(pg, 0, 0, width, height);
   drawKeypoints();
 }
-
 
 function modelReady() {
   console.log('model ready');
@@ -116,7 +78,7 @@ function drawKeypoints() {
       // Only draw an ellipse is the pose probability is bigger than 0.2
       if (keypoint.score > 0.2) {
         //Aca se elige con que parte del cuerpo se controla el sketch
-        if (j == parte) {
+        if (j == 0) {
           poseX = keypoint.position.x;
           poseY = keypoint.position.y;
 
