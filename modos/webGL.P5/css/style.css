@@ -50,10 +50,10 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-bottom: 150px;
+  margin-bottom: 200px;
 }
 
-.selector {
+.misBotones {
   display: grid;
   place-items: center;
   position: absolute;
@@ -61,4 +61,65 @@ button {
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  position: fixed;
+  bottom: 25px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.iconbtn {
+  font-size: 2em;
+  opacity: 0.5;
+}
+
+.iconbtn:hover {
+  opacity: 1;
+}
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(114, 165, 164, 100);
+  width: 0px;
+  height: 100px;
+  position: fixed;
+  bottom: 55px;
+  right: 40px;
+  border-radius: 10px;
+  opacity: 0;
+
+  transition: width 2s, opacity 1s;
+}
+
+.popText{
+  flex: 0 0 150px;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.atras{
+  position: fixed;
+  top: 0;
+  left: 10px;
+  width: 50px;
+  opacity: 0.5;
+}
+
+.atras:hover{
+  opacity: 1;
+}
+
+.fa-long-arrow-alt-left{
+  font-size: 2em;
 }

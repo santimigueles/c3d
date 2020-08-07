@@ -2,18 +2,37 @@
 let poseNet;
 let poses = [];
 let poseX, poseY;
-let miBoton, opciones;
+let miBoton = document.querySelector('.empezar');
+let opciones = document.querySelector('.selector');
+let popup = document.querySelector(".popup")
 let parte = 0;
 let start = false
+let mostrar = false;
 
 //Variables Santi
 var angle = 0;
 let cam;
 
+opciones.addEventListener('change', (event) => {
+   parte = parseInt(event.target.value);
+})
+
+function mostrarPop(){
+  mostrar = !mostrar;
+
+  if(mostrar){
+    popup.style.width = '200px';
+    popup.style.opacity = '1';
+  } else {
+    popup.style.width = '0px';
+    popup.style.opacity = '0';
+  }
+}
+
 function posenetStart() {
-  if (opciones.value() != 'Seleccionar...') {
-    miBoton.hide();
-    opciones.hide();
+  if (!isNaN(parte)) {
+    miBoton.style.display = "none";
+    opciones.style.display = "none";
     poseNet = ml5.poseNet(cam, modelReady);
     poseNet.on('pose', function(results) {
       poses = results;
@@ -29,44 +48,44 @@ function setup() {
   cam.size(150, 175);
   cam.hide();
 
-  let miDiv = createDiv()
-  miDiv.addClass('selector')
-
-  miBoton = createButton('Empezar');
-  miBoton.mousePressed(posenetStart);
-
-  opciones = createSelect();
-  opciones.option('Seleccionar...')
-  opciones.option('nariz')
-  opciones.option('mano izquierda')
-  opciones.option('mano derecha')
-  opciones.changed(cambioDeteccion)
-
-  miDiv.child(opciones)
-  miDiv.child(miBoton)
+  // let miDiv = createDiv()
+  // miDiv.addClass('selector')
+  //
+  // miBoton = createButton('Empezar');
+  // miBoton.mousePressed(posenetStart);
+  //
+  // opciones = createSelect();
+  // opciones.option('Seleccionar...')
+  // opciones.option('nariz')
+  // opciones.option('mano izquierda')
+  // opciones.option('mano derecha')
+  // opciones.changed(cambioDeteccion)
+  //
+  // miDiv.child(opciones)
+  // miDiv.child(miBoton)
 }
 
-function cambioDeteccion() {
-  let val = opciones.value();
-  switch (val) {
-
-    case 'nariz':
-      parte = 0;
-      break;
-
-    case 'mano izquierda':
-      parte = 9;
-      break;
-
-    case 'mano derecha':
-      parte = 10;
-      break;
-
-    default:
-      parte = 0;
-      break;
-  }
-}
+// function cambioDeteccion() {
+//   let val = opciones.value();
+//   switch (val) {
+//
+//     case 'nariz':
+//       parte = 0;
+//       break;
+//
+//     case 'mano izquierda':
+//       parte = 9;
+//       break;
+//
+//     case 'mano derecha':
+//       parte = 10;
+//       break;
+//
+//     default:
+//       parte = 0;
+//       break;
+//   }
+// }
 
 function draw() {
   if (start) {
