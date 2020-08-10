@@ -25,9 +25,14 @@ io.sockets.on('connection', function (socket) {
 		socket.emit("connected", 1);
 	});
 
-  socket.on("message", function (value) {
-    oscClient.send('/test',value)
+  socket.on("nose", function (value) {
+    oscClient.send('/nose',value)
   })
+
+	socket.on("leftEye", function (value) {
+		oscClient.send('/leftEye',value)
+	})
+
 	socket.on('disconnect', function(){
 		if (isConnected) {
 			oscServer.kill();

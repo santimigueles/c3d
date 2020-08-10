@@ -74,10 +74,22 @@ function drawKeypoints() {
         noStroke();
         ellipse(keypoint.position.x, keypoint.position.y, 10, 10);
 
-        poseX = keypoint.position.x;
-        poseY = keypoint.position.y;
+        switch (j) {
+          case 0:
+            poseX = keypoint.position.x;
+            poseY = keypoint.position.y;
+            socket.emit('nose', [poseX, poseY]);
+            break;
 
-        socket.emit('message', [poseX, poseY]);
+            case 1:
+              poseX = keypoint.position.x;
+              poseY = keypoint.position.y;
+              socket.emit('leftEye', [poseX, poseY]);
+              break;
+
+          default:
+        }
+
       }
     }
   }

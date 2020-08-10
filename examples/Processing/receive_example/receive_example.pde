@@ -3,7 +3,7 @@ import oscP5.*;
 import netP5.*;
 
 //El x e y de nuestra parte del cuerpo detectada
-float x,y;
+float x,y,x1,y1;
 
 //Creo los objetos de las librerias
 OscP5 oscP5;
@@ -23,11 +23,15 @@ void draw() {
   ellipse(x, y, 100, 100);
   fill(0);
   text("I'm Processing", x-40, y);
+  
+  ellipse(x1, y1, 100, 100);
+  fill(0);
+  text("I'm Processing2", x-40, y1);
 }
 
 //Aca se recibe la data de OSC
 void oscEvent(OscMessage theOscMessage) {
-  if(theOscMessage.checkAddrPattern("/test")==true){
+  if(theOscMessage.checkAddrPattern("/nose")==true){
      x = theOscMessage.get(0).floatValue();
      y = theOscMessage.get(1).floatValue();
   }
