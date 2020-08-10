@@ -25,13 +25,11 @@ io.sockets.on('connection', function (socket) {
 		socket.emit("connected", 1);
 	});
 
-  socket.on("nose", function (value) {
-    oscClient.send('/nose',value)
+  socket.on("pose", function (value) {
+		let miPosX = value[1]
+		let miPosY = value[2]
+    oscClient.send(value[0],[miPosX, miPosY])
   })
-
-	socket.on("leftEye", function (value) {
-		oscClient.send('/leftEye',value)
-	})
 
 	socket.on('disconnect', function(){
 		if (isConnected) {
