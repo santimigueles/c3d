@@ -31,7 +31,7 @@ void draw() {
 
 //Aca se recibe la data de OSC
 void oscEvent(OscMessage theOscMessage) {
-  if(theOscMessage.checkAddrPattern("/nose")==true){
+  if(theOscMessage.checkAddrPattern("/poses/0/keypoints/nose/")==true){
      x = theOscMessage.get(0).floatValue();
      y = theOscMessage.get(1).floatValue();
   }
