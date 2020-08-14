@@ -3,6 +3,11 @@ let video;
 let poseNet;
 let poses = [];
 let poseX, poseY;
+let videoSwitch = true;
+
+function switchOn(){
+  videoSwitch = !videoSwitch;
+}
 
 function setup() {
   createCanvas(640, 480)
@@ -20,11 +25,20 @@ function setup() {
 }
 
 function draw() {
-  translate(video.width, 0);
-  scale(-1, 1);
-  image(video, 0, 0, 640, 480);
-  drawKeypoints();
-  drawSkeleton();
+  if(videoSwitch){
+    translate(video.width, 0);
+    scale(-1, 1);
+    image(video, 0, 0, 640, 480);
+    drawKeypoints();
+    drawSkeleton();
+  } else {
+    translate(video.width, 0);
+    scale(-1, 1);
+    drawKeypoints();
+    drawSkeleton();
+    clear()
+  }
+
 }
 
 
