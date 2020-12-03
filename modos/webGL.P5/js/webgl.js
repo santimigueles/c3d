@@ -92,7 +92,7 @@ function draw() {
 
     texture(cam);
 
-    box(220);
+    ellipsoid(220, 350, 150, 150);
     box(50);
     box(20);
     box(8);
